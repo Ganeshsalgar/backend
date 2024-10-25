@@ -2,9 +2,10 @@
   "name": "beckend",
   "version": "1.0.0",
   "description": "a backend at the chai aur code chennel",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": " nodemon src/index.js"
   },
   "keywords": [
     "javascript",
@@ -13,6 +14,7 @@
   "author": "ganesh salgar",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
   }
 }
