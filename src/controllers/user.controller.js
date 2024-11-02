@@ -73,4 +73,52 @@ const registerUser = asyncHandler(async (req, res) => {
     });
 });
 
-export { registerUser };
+
+
+//*****************************************user Login **************** */
+
+const loginUser = asyncHandler(async (req, res) => {
+    // request body -> data
+    // username or email
+    // find user exist 
+    // check password 
+    // access and refresh token
+    // send cookies
+
+
+    // request body -> data
+    const {username , email, password} = req.body;
+
+    
+    
+    // username or email
+    if (!username || email) {
+        throw new ApiError(400 , "username and email is required !!")
+    }
+
+    // check the user is exist
+
+    const user = await User.findOne({
+        $or : [{username} , {email}]
+    })
+
+
+    if (!user) {
+        throw new ApiError(404 , "user does not exist !!")
+    }
+
+    // check the valid password
+    const isPasswordValid = await user.isPasswordCorrect(password);
+
+    if (!isPasswordValid) {
+        throw new ApiError(401 , "Password is Incorrect")
+    }
+    
+    
+})
+
+
+export { 
+    registerUser,
+    loginUser 
+};
